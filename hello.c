@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>	// printf
+#include <stdio.h>
 
 void die(){}
 
@@ -28,6 +28,13 @@ int letterlist_length(const letter *list) {
 			l = l->next;
 	}
 	return result;
+}
+
+void letterlist_print(const letter *list) {
+	const letter *l = list;
+	do {
+		putchar(l->c);
+	} while (l != list);
 }
 
 void require(int truth) {	if (!truth) exit(1); }
