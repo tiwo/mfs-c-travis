@@ -26,6 +26,7 @@ letter *letterlist_append(letter *list, char c) {
 }
 
 int letterlist_length(const letter *list) {
+	if (!list) return 0;
 	const letter *l = list->next;
 	int result = 0;
 	while (l != list) {
@@ -36,6 +37,7 @@ int letterlist_length(const letter *list) {
 }
 
 void letterlist_print(const letter *list, int reverse) {
+	if (!list) return;
 	const letter *l = list;
 
 	do {
@@ -45,6 +47,7 @@ void letterlist_print(const letter *list, int reverse) {
 }
 
 letter *letterlist_reverse(letter *list) {
+	if (!list) return NULL;
 	letter *l = list;
 	do {
 		letter *tmp = l->next;
@@ -52,6 +55,17 @@ letter *letterlist_reverse(letter *list) {
 		l = (l->prev = tmp);   // (sequence point before assignind to l)
 	} while (l != list);
 	return list->next;
+}
+
+void letterlist_destroy(letter *list) {
+	if (!list) return;
+	letter *last = list->prev;
+	letter *l = list;
+	while (l != last) {
+		l = l->next;
+		free(l->prev);
+	}
+	free(last);
 }
 
 void require(int truth) {	if (!truth) exit(1); }
@@ -70,6 +84,8 @@ int main(int argc, char **argv) {
 	list = letterlist_reverse(list);
 	letterlist_print(list, 0); putchar('\n');
 	letterlist_print(list->prev, 1); putchar('\n');
+
+	letterlist_destroy(list);
 
 	return 0;
 }
