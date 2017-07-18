@@ -6,4 +6,7 @@ clean:
 	-rm -f hello.o
 	-rm -f hello
 
-.PHONY: clean
+test: hello
+	gdb ./hello
+
+.PHONY: clean test
