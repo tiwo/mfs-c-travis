@@ -18,6 +18,8 @@ letter *letterlist_append(letter *list, char c) {
 	new->next = list;
 	new->prev->next = list->prev = new;
 	list->prev = new;
+
+	return list;
 }
 
 int letterlist_length(const letter *list) {
