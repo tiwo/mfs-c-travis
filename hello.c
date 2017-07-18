@@ -53,6 +53,6 @@ int main(int argc, char **argv) {
 	printf("List length: %d\n", letterlist_length(list));
 
 	letterlist_print(list, 0); putchar('\n');
-	letterlist_print(list, 1); putchar('\n');
+	letterlist_print(list->prev, 1); putchar('\n');
 	return 0;
 }
