@@ -44,17 +44,31 @@ void letterlist_print(const letter *list, int reverse) {
 	} while (l != list);
 }
 
+void letterlist_reverse(letter *list) {
+	letter *l = list;
+	do {
+		letter *tmp = l->next;
+		l->next = l->prev;
+		l = (l->prev = tmp);   // (sequence point before assignind to l)
+	} while (l != list);
+}
+
 void require(int truth) {	if (!truth) exit(1); }
 
 int main(int argc, char **argv) {
 	letter *list = letterlist_append(NULL, 'H');
 	require((int)list);
-	for (const char *w = "ello World!"; *w; ++w)
+	for (const char *w = "ello World! How do you do! How do you even? 1234"; *w; ++w)
 		require((int)letterlist_append(list, *w));
 
 	printf("List length: %d\n", letterlist_length(list));
 
 	letterlist_print(list, 0); putchar('\n');
 	letterlist_print(list->prev, 1); putchar('\n');
+	printf("reversing...\n");
+	letterlist_reverse(list);
+	letterlist_print(list, 0); putchar('\n');
+	letterlist_print(list->prev, 1); putchar('\n');
+
 	return 0;
 }
