@@ -8,3 +8,5 @@ compiler:
 script:
   - make
   - ./hello
+env:
+  - CFLAGS=-std=c99
