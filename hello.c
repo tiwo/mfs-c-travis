@@ -58,9 +58,9 @@ void require(int truth) {	if (!truth) exit(1); }
 
 int main(int argc, char **argv) {
 	letter *list = letterlist_append(NULL, 'H');
-	require((int)list);
+	require(!!list);
 	for (const char *w = "ello World! How do you do! How do you even? 1234"; *w; ++w)
-		require((int)letterlist_append(list, *w));
+		require(!!letterlist_append(list, *w));
 
 	printf("List length: %d\n", letterlist_length(list));
 
