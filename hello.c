@@ -38,7 +38,7 @@ void letterlist_print(const letter *list, int reverse) {
 
 	do {
 		putchar(l->c);
-		l = reverse ? l->next : l->prev;
+		l = reverse ? l->prev : l->next;
 	} while (l != list);
 }
 
