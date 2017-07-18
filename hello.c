@@ -44,13 +44,14 @@ void letterlist_print(const letter *list, int reverse) {
 	} while (l != list);
 }
 
-void letterlist_reverse(letter *list) {
+letter *letterlist_reverse(letter *list) {
 	letter *l = list;
 	do {
 		letter *tmp = l->next;
 		l->next = l->prev;
 		l = (l->prev = tmp);   // (sequence point before assignind to l)
 	} while (l != list);
+	return list->next;
 }
 
 void require(int truth) {	if (!truth) exit(1); }
@@ -66,7 +67,7 @@ int main(int argc, char **argv) {
 	letterlist_print(list, 0); putchar('\n');
 	letterlist_print(list->prev, 1); putchar('\n');
 	printf("reversing...\n");
-	letterlist_reverse(list);
+	list = letterlist_reverse(list);
 	letterlist_print(list, 0); putchar('\n');
 	letterlist_print(list->prev, 1); putchar('\n');
 
