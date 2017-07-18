@@ -1,0 +1,7 @@
+#!/bin/bash
+
+REMOTE=builsd@candy
+
+tar czf this.tgz `git ls-files` || exit 1
+scp this.tgz "$REMOTE":\~ || exit 1
+ssh "$REMOTE" "mkdir -p this && cd this && tar xzf ../this.tgz && CFLAGS='-Wall -std=c99 -ggdb' make && make test"
