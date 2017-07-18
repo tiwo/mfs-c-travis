@@ -49,5 +49,8 @@ int main(int argc, char **argv) {
 		require((int)letterlist_append(list, *w));
 
 	printf("List length: %d\n", letterlist_length(list));
+
+	letterlist_print(list);
+	putchar('\n');
 	return 0;
 }
