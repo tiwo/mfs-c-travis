@@ -33,11 +33,12 @@ int letterlist_length(const letter *list) {
 	return result;
 }
 
-void letterlist_print(const letter *list) {
+void letterlist_print(const letter *list, int reverse) {
 	const letter *l = list;
+
 	do {
 		putchar(l->c);
-		l = l->next;
+		l = reverse ? l->next : l->prev;
 	} while (l != list);
 }
 
@@ -51,7 +52,7 @@ int main(int argc, char **argv) {
 
 	printf("List length: %d\n", letterlist_length(list));
 
-	letterlist_print(list);
-	putchar('\n');
+	letterlist_print(list, 0); putchar('\n');
+	letterlist_print(list, 1); putchar('\n');
 	return 0;
 }
