@@ -13,6 +13,7 @@ typedef struct letter {
 
 letter *letterlist_append(letter *list, char c) {
 	letter *new = malloc(sizeof(letter));
+	if (!list) list = new;
 	new->c = c;
 	new->prev = list->prev;
 	new->next = list;
