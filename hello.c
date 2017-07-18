@@ -37,6 +37,7 @@ void letterlist_print(const letter *list) {
 	const letter *l = list;
 	do {
 		putchar(l->c);
+		l = l->next;
 	} while (l != list);
 }
 
